@@ -7,6 +7,8 @@ const reset = document.getElementById("reset");
 const search = document.getElementById("search");
 
 const searchText = document.getElementById("searchcontent");
+const totalno = document.getElementById("totalstudents");
+const highestcgpa = document.getElementById("highestcgpa");
 
 const studentName = document.getElementById("studentName");
 const studentRoll = document.getElementById("studentRoll");
@@ -67,6 +69,8 @@ function renderStudents() {
     if (students.length === 0) {
     document.getElementById("studentTable").hidden = true;   // hide whole table
     document.getElementById("emptyMessage").textContent = "No students found.";
+    totalno.textContent = "Total number of Students: 0";
+    highestcgpa.textContent = "Highest CGPA: -";
     return;
   }
 
@@ -88,6 +92,12 @@ function renderStudents() {
     `;
     tableBody.innerHTML += row;
   });
+
+   totalno.textContent = `Total number of Students: ${students.length}`;
+
+  // find max cgpa
+  const maxcgpa = Math.max(...students.map(s => Number(s.cgpa)));
+  highestcgpa.textContent = `Highest CGPA: ${maxcgpa}`;
 }
 
 addBtn.addEventListener("click", (event) => {
