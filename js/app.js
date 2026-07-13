@@ -3,6 +3,10 @@ let editStudentId = null;
 
 const addBtn = document.getElementById("addBtn");
 const updateBtn = document.getElementById("updateBtn");
+const reset = document.getElementById("reset");
+const search = document.getElementById("search");
+
+const searchText = document.getElementById("searchcontent");
 
 const studentName = document.getElementById("studentName");
 const studentRoll = document.getElementById("studentRoll");
@@ -10,6 +14,18 @@ const studentBranch = document.getElementById("studentBranch");
 const studentCgpa = document.getElementById("studentCgpa");
 
 const tableBody = document.getElementById("tableBody");
+
+
+function clearvalues(){
+   studentName.value = "";
+  studentRoll.value = "";
+  studentBranch.value = "";
+  studentCgpa.value = "";
+}
+
+reset.addEventListener("click",()=>{
+  clearvalues();
+});
 
 function saveStudents() {
   localStorage.setItem("students", JSON.stringify(students));
@@ -24,9 +40,11 @@ function loadStudents() {
 }
 
 function deleteStudent(id) {
+  if (confirm("Are you sure you want to delete this student?")) {
   students = students.filter(student => student.id !== id);
   saveStudents(); 
   renderStudents();
+  }
 }
 
 function editStudent(id) {
@@ -46,6 +64,14 @@ function editStudent(id) {
 
 function renderStudents() {
   tableBody.innerHTML = "";
+    if (students.length === 0) {
+    document.getElementById("studentTable").hidden = true;   // hide whole table
+    document.getElementById("emptyMessage").textContent = "No students found.";
+    return;
+  }
+
+  document.getElementById("studentTable").hidden = false;    // show table again
+  document.getElementById("emptyMessage").textContent = "";
   students.forEach((student, index) => {
     const row = `
       <tr>
@@ -82,11 +108,8 @@ addBtn.addEventListener("click", (event) => {
 
   saveStudents(); 
   renderStudents();
+  clearvalues();
 
-  // studentName.value = "";
-  // studentRoll.value = "";
-  // studentBranch.value = "";
-  // studentCgpa.value = "";
 });
 
 updateBtn.addEventListener("click", (event) => {
@@ -113,14 +136,32 @@ updateBtn.addEventListener("click", (event) => {
   saveStudents(); 
   renderStudents();
 
-  studentName.value = "";
-  studentRoll.value = "";
-  studentBranch.value = "";
-  studentCgpa.value = "";
+  clearvalues();
   addBtn.hidden = false;
   updateBtn.hidden = true;
   editStudentId = null;
 });
 
-window.onload = loadStudents;
+search.addEventListener("click", () => {
+  const query = searchText.value.trim().toLowerCase();
+  const resultPara = document.getElementById("searchResult");
 
+  // filter students by name or roll
+  const results = students.filter(student =>
+    student.name.toLowerCase().includes(query) ||
+    student.roll.toLowerCase().includes(query)
+  );
+
+  if (results.length === 0) {
+    resultPara.textContent = "No students found.";
+    return;
+  }
+
+  // show each result in paragraph
+  resultPara.textContent = results.map(student =>
+    `ID: ${student.id}, Name: ${student.name}, Roll: ${student.roll}, Branch: ${student.branch}, CGPA: ${student.cgpa}`
+  ).join(" | ");
+});
+
+
+window.onload = loadStudents;
