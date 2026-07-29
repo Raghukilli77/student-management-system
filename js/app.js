@@ -7,8 +7,10 @@ const reset = document.getElementById("reset");
 const search = document.getElementById("search");
 
 const searchText = document.getElementById("searchcontent");
-const totalno = document.getElementById("totalstudents");
-const highestcgpa = document.getElementById("highestcgpa");
+const totalStudentsElement = document.getElementById("totalstudents");
+const averageCgpaElement = document.getElementById("averagecgpa");
+const highestCgpaElement = document.getElementById("highestcgpa");
+const dashboard = document.getElementById("x");
 
 const studentName = document.getElementById("studentName");
 const studentRoll = document.getElementById("studentRoll");
@@ -16,9 +18,11 @@ const studentBranch = document.getElementById("studentBranch");
 const studentCgpa = document.getElementById("studentCgpa");
 
 const tableBody = document.getElementById("tableBody");
+const searchTable = document.getElementById("searchTable");
+searchTable.hidden=true;
 
 
-function clearvalues(){
+function clearForm(){
    studentName.value = "";
   studentRoll.value = "";
   studentBranch.value = "";
@@ -26,7 +30,7 @@ function clearvalues(){
 }
 
 reset.addEventListener("click",()=>{
-  clearvalues();
+  clearForm();
 });
 
 function saveStudents() {
@@ -63,18 +67,19 @@ function editStudent(id) {
 
   editStudentId = id;
 }
-
-function renderStudents() {
-  tableBody.innerHTML = "";
-    if (students.length === 0) {
-    document.getElementById("studentTable").hidden = true;   // hide whole table
+function ifempty(){
+   document.getElementById("studentTable").hidden = true;   // hide whole table
+   document.getElementById("tablecardid").hidden = true;
     document.getElementById("emptyMessage").textContent = "No students found.";
-    totalno.textContent = "Total number of Students: 0";
-    highestcgpa.textContent = "Highest CGPA: -";
-    return;
-  }
+    // totalStudentsElement.textContent = "Total number of Students: 0";
+    // highestCgpaElement.textContent = "Highest CGPA: -";
+    dashboard.hidden=true;
 
+}
+function ifnotempty(){
+  dashboard.hidden=false;
   document.getElementById("studentTable").hidden = false;    // show table again
+  document.getElementById("tablecardid").hidden = false;
   document.getElementById("emptyMessage").textContent = "";
   students.forEach((student, index) => {
     const row = `
@@ -84,7 +89,7 @@ function renderStudents() {
         <td>${student.roll}</td>
         <td>${student.branch}</td>
         <td>${student.cgpa}</td>
-        <td>
+        <td class="actions">
           <button onclick="editStudent(${student.id})">Edit</button>
           <button onclick="deleteStudent(${student.id})">Delete</button>
         </td>
@@ -92,12 +97,30 @@ function renderStudents() {
     `;
     tableBody.innerHTML += row;
   });
-
-   totalno.textContent = `Total number of Students: ${students.length}`;
+}
+function updatedashboard(){
+  
+   totalStudentsElement.textContent = `Total number of Students: ${students.length}`;
+   
 
   // find max cgpa
   const maxcgpa = Math.max(...students.map(s => Number(s.cgpa)));
-  highestcgpa.textContent = `Highest CGPA: ${maxcgpa}`;
+  highestCgpaElement.textContent = `Highest CGPA: ${maxcgpa}`;
+  
+  const sumCgpa = students.reduce((sum, s) => sum + Number(s.cgpa), 0);
+  const avgCgpa = (sumCgpa / students.length).toFixed(2);
+  averageCgpaElement.textContent = `Average CGPA: ${avgCgpa}`;
+}
+function renderStudents() {
+  tableBody.innerHTML = "";
+    if (students.length === 0) {
+      ifempty();
+    return;
+  }else{
+       ifnotempty();
+
+  }
+  updatedashboard();
 }
 
 addBtn.addEventListener("click", (event) => {
@@ -118,7 +141,7 @@ addBtn.addEventListener("click", (event) => {
 
   saveStudents(); 
   renderStudents();
-  clearvalues();
+  clearForm();
 
 });
 
@@ -146,15 +169,28 @@ updateBtn.addEventListener("click", (event) => {
   saveStudents(); 
   renderStudents();
 
-  clearvalues();
+  clearForm();
   addBtn.hidden = false;
   updateBtn.hidden = true;
   editStudentId = null;
 });
 
-search.addEventListener("click", () => {
+
+searchText.addEventListener("input", () => {
   const query = searchText.value.trim().toLowerCase();
-  const resultPara = document.getElementById("searchResult");
+  const searchTable = document.getElementById("searchTable");
+  const searchTableBody = document.getElementById("searchTableBody");
+  const searchMessage = document.getElementById("searchMessage");
+
+  // clear previous search results
+  searchTableBody.innerHTML = "";
+  searchMessage.textContent = "";
+
+  // case 1: nothing typed → hide everything
+  if (!query) {
+    searchTable.hidden = true;
+    return;
+  }
 
   // filter students by name or roll
   const results = students.filter(student =>
@@ -162,16 +198,27 @@ search.addEventListener("click", () => {
     student.roll.toLowerCase().includes(query)
   );
 
+  // case 2: typed but no matches → hide table, show message
   if (results.length === 0) {
-    resultPara.textContent = "No students found.";
+    searchTable.hidden = true;
+    searchMessage.textContent = "No students found.";
     return;
   }
 
-  // show each result in paragraph
-  resultPara.textContent = results.map(student =>
-    `ID: ${student.id}, Name: ${student.name}, Roll: ${student.roll}, Branch: ${student.branch}, CGPA: ${student.cgpa}`
-  ).join(" | ");
+  // case 3: typed and matches found → show table with results
+  searchTable.hidden = false;
+  results.forEach((student, index) => {
+    const serialNumber = students.findIndex(s => s.id === student.id) + 1;
+    searchTableBody.innerHTML += `
+      <tr>
+        <td>${serialNumber}</td>
+        <td>${student.name}</td>
+        <td>${student.roll}</td>
+        <td>${student.branch}</td>
+        <td>${student.cgpa}</td>
+      </tr>
+    `;
+  });
 });
-
 
 window.onload = loadStudents;
