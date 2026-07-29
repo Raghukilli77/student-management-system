@@ -1,1 +1,480 @@
+/* ===========================
+   BODY
+=========================== */
+body{
+    text-align: center;
+    background-color:#0F0F0F;
+    margin: 10px;
+}
+
+/* ===========================
+   CONTAINER
+=========================== */
+.container{
+    width: 100%;
+    max-width: 1400px;
+
+    display: flex;
+
+    gap: 10px;
+
+    margin: 30px auto;
+}
+.left{
+    flex: 1;
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+
+}
+.right{
+    flex: 2;
+    border-right:1px solid #444;
+    box-shadow:2px 0 10px rgba(255,255,255,.05);
+
+}
+
+/* ===========================
+   HEADER
+=========================== */
+header{
+    background-color: #171717;
+    color: white;
+
+    padding: 20px;
+
+    border-radius: 12px;
+
+    text-align: center;
+
+    margin-bottom: 25px;
+
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+}
+
+header h1{
+    margin: 0;
+
+    font-size: 2rem;
+
+    letter-spacing: 1px;
+}
+
+header p{
+    margin-top: 8px;
+
+    color: #b3b3b3;
+
+    font-size: 1rem;
+}
+
+/* ===========================
+   FORM CARD
+=========================== */
+
+.form-card{
+    background:#171717;
+    color:#ffffff;
+    border:1px solid #2b2b2b;
+    border-radius:18px;
+    padding:24px;
+    box-shadow:0 8px 20px rgba(0,0,0,.35);
+    transition:all .3s ease;
+    text-align: left;
+}
+
+.form-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 12px 30px rgba(255,255,255,.08);
+}
+
+/* ===========================
+   FIELDSET
+=========================== */
+
+fieldset{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+    border:1px solid #3a3a3a;
+    border-radius:12px;
+    padding:20px;
+
+    transition:.3s;
+}
+
+.form-card:hover fieldset{
+    border-color:#ffffff;
+    box-shadow:0 0 18px rgba(255,255,255,.12);
+}
+
+legend{
+    padding:0 12px;
+    font-size:20px;
+    font-weight:bold;
+    color:#ffffff;
+}
+
+/* ===========================
+   FORM GROUP
+=========================== */
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+}
+
+/* ===========================
+   LABEL
+=========================== */
+
+label{
+    margin-bottom:8px;
+    font-size:14px;
+    font-weight:600;
+    color:#d9d9d9;
+   
+}
+
+/* ===========================
+   INPUTS & SELECT
+=========================== */
+
+input,
+select{
+    width:100%;
+    padding:12px 14px;
+    box-sizing:border-box;
+
+
+    background:#1f1f1f;
+    color:#ffffff;
+
+    border:1px solid #444;
+    border-radius:10px;
+
+    font-size:15px;
+
+    transition:.3s;
+}
+
+input::placeholder{
+    color:#777;
+}
+
+input:hover,
+select:hover{
+    border-color:#888;
+}
+
+input:focus,
+select:focus{
+    outline:none;
+    border-color:#ffffff;
+    box-shadow:0 0 12px rgba(255,255,255,.18);
+}
+
+/* ===========================
+   BUTTON GROUP
+=========================== */
+
+.button-group{
+    display:flex;
+    gap:15px;
+    margin-top:8px;
+}
+
+/* ===========================
+   BUTTONS
+=========================== */
+
+.button-group button{
+    flex:1;
+
+    padding:12px;
+
+    background:#101010;
+    color:#ffffff;
+
+    border:1px solid #555;
+    border-radius:10px;
+
+    font-size:15px;
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.button-group button:hover{
+    background:#ffffff;
+    color:#000000;
+    border-color:#ffffff;
+
+    transform:translateY(-2px);
+}
+
+.button-group button:active{
+    transform:scale(.97);
+}
+
+/* ===========================
+   UPDATE BUTTON
+=========================== */
+
+#updateBtn{
+    background:#2b2b2b;
+}
+
+/* ===========================
+   RESET BUTTON
+=========================== */
+
+#reset{
+    background:#1a1a1a;
+}
+
+
+/* ===========================
+   SEARCH CARD
+=========================== */
+
+.search-card{
+    background:#171717;
+    color:#ffffff;
+
+    border:1px solid #2b2b2b;
+    border-radius:18px;
+
+    padding:24px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.35);
+
+    transition:all .3s ease;
+}
+
+.search-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 12px 30px rgba(255,255,255,.08);
+}
+.search-card h2{
+    margin-bottom:20px;
+    text-align:center;
+    font-size:22px;
+    font-weight:600;
+}
+.search-box{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+.search-box input{
+    width:100%;
+    box-sizing:border-box;
+
+    padding:12px;
+
+    background:#1f1f1f;
+    color:white;
+
+    border:1px solid #444;
+    border-radius:10px;
+
+    transition:.3s;
+}
+
+.search-box input:focus{
+    outline:none;
+    border-color:white;
+    box-shadow:0 0 12px rgba(255,255,255,.18);
+}
+#search{
+    width:90%;
+    box-sizing: border-box;
+    text-align: center;
+    padding:12px;
+
+    background:#101010;
+    color:white;
+
+    border:1px solid #555;
+    border-radius:10px;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+#search:hover{
+    background:white;
+    color:black;
+    transform:translateY(-2px);
+}
+#searchTable{
+    width:100%;
+    margin-top:20px;
+    border-collapse:collapse;
+}
+#searchMessage{
+    margin-top:15px;
+    text-align:center;
+    color:#bbbbbb;
+}
+/* ===========================
+   DASHBOARD CARD
+=========================== */
+
+.dashboard-card{
+    background:#171717;
+    color:#ffffff;
+    border:1px solid #2b2b2b;
+    border-radius:18px;
+    width: 95%;
+    padding:14px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.35);
+
+    transition:all .3s ease;
+}
+
+.dashboard-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 12px 30px rgba(255,255,255,.08);
+}
+
+.dashboard-card hr{
+    border:none;
+    height:1px;
+    background:#333;
+    margin:18px 0;
+}
+
+#studentdashboard{
+    text-align:center;
+    font-size:22px;
+    font-weight:700;
+    letter-spacing:1px;
+    margin-bottom:15px;
+}
+
+/* Dashboard Statistics */
+
+#totalstudents,
+#averagecgpa,
+#highestcgpa{
+    background:#1f1f1f;
+
+    border:1px solid #333;
+    border-radius:12px;
+
+    padding:13px 15px;
+
+    margin-bottom:15px;
+
+    font-size:16px;
+    font-weight:600;
+
+    transition:.3s;
+}
+
+#totalstudents:hover,
+#averagecgpa:hover,
+#highestcgpa:hover{
+    border-color:#ffffff;
+    box-shadow:0 0 12px rgba(255,255,255,.15);
+
+    transform:translateX(5px);
+}
+/* ===========================
+   TABLE CARD
+=========================== */
+.table-card{
+    background:#171717;
+    border:1px solid #2b2b2b;
+    border-radius:18px;
+    width:95%;
+    padding:10px;
+
+    margin-top:20px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.35);
+
+    transition:.3s;
+    max-height: 350px;
+    overflow-y: auto;
+    overflow-x: hidden; 
+}
+
+.table-card:hover{
+    box-shadow:0 12px 30px rgba(255,255,255,.08);
+}
+#studentTable{
+    width:100%;
+    border-collapse:collapse;
+    color:white;
+    table-layout: fixed; /* keeps column widths fixed */
+    width: 100%;
+}
+#studentTable th{
+    background:#202020;
+    padding:12px;
+    text-align:center;
+
+    border-bottom:1px solid #333;
+}
+#studentTable td{
+    padding:12px;
+    border-bottom:1px solid #2d2d2d;
+    word-wrap: break-word; /* wraps long words */
+    white-space: normal; 
+}
+#studentTable tbody tr:nth-child(even){
+    background:#1c1c1c;
+}
+#studentTable tbody tr:hover{
+    background:#292929;
+}
+#studentTable td button{
+    padding:8px 12px;
+
+    border:none;
+    border-radius:8px;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+#studentTable td button:first-child{
+    background:white;
+    color:black;
+}
+
+#studentTable td button:first-child:hover{
+    background:#d9d9d9;
+}
+#studentTable td button:last-child{
+    background:#2b2b2b;
+    color:white;
+    margin-left:8px;
+}
+
+#studentTable td button:last-child:hover{
+    background:#444;
+}
+#emptyMessage{
+    margin-top:20px;
+    text-align:center;
+    color:#888;
+}
+#studentTable td.actions {
+  display: flex;
+  gap: 8px;              /* space between buttons */
+  justify-content: center; /* optional: center them */
+}
+
+
+
+
+
 
