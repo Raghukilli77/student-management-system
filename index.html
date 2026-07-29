@@ -1,105 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Management System</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
+
     <!-- Main Header -->
     <header>
-        <h1>Student Management System</h1>
+        <h1>🎓 Student Management System</h1>
+        <p>Manage Student Records Efficiently</p>
     </header>
 
     <!-- Form Section -->
     <main>
-        <form>
-            <fieldset>
-                <legend>Add New Student Details</legend>
 
-                <!-- Input Group: Name -->
-                <div>
-                    <label for="studentName">Student Name:</label>
-                    <input type="text" id="studentName" placeholder="eg: raghu" required>
+        <div class="container">
+
+            <div class="left">
+
+                <div class="form-card">
+
+                    <form>
+
+                        <fieldset>
+
+                            <legend>Add New Student Details</legend>
+
+                            <!-- Input Group: Name -->
+                            <div >
+                                <label for="studentName">Student Name:</label>
+                                <input type="text" id="studentName" placeholder="eg: raghu" required>
+                            </div>
+
+
+                            <!-- Input Group: Roll Number -->
+                            <div >
+                                <label for="studentRoll">Roll Number:</label>
+                                <input type="text" id="studentRoll" placeholder="eg: 25P35A0577" required>
+                            </div>
+
+
+                            <!-- Input Group: Branch Dropdown -->
+                            <div >
+                                <label for="studentBranch">Select your Branch:</label>
+
+                                <select id="studentBranch" required>
+                                    <option value="" disabled selected hidden>Choose your branch...</option>
+                                    <option value="CSE">CSE (Computer Science)</option>
+                                    <option value="MECH">MECH (Mechanical)</option>
+                                    <option value="ECE">ECE (Electronics & Communication)</option>
+                                    <option value="IT">IT (Information Technology)</option>
+                                    <option value="CIVIL">CIVIL (Civil Engineering)</option>
+                                    <option value="EEE">EEE (Electrical & Electronics)</option>
+                                    <option value="AI-ML">AI & ML (Artificial Intelligence)</option>
+                                    <option value="DS">DS (Data Science)</option>
+                                </select>
+
+                            </div>
+
+
+                            <!-- Input Group: Cgpa -->
+                            <div >
+                                <label for="studentCgpa">Cgpa:</label>
+                                <input type="number" id="studentCgpa" min="0" max="10" placeholder="0-10" required>
+                            </div>
+
+
+                            <!-- Form Action -->
+                            <div class="button-group">
+                                <button type="submit" id="addBtn">Add Student</button>
+                                <button id="updateBtn" hidden>Update Student</button>
+                                <button id="reset">Reset</button>
+                            </div>
+
+                        </fieldset>
+
+                    </form>
+
                 </div>
 
-                <!-- Input Group: Roll Number -->
-                <div>
-                    <label for="studentRoll">Roll Number:</label>
-                    <input type="text" id="studentRoll" placeholder="eg: 25P35A0577" required>
+                <div class="search-card">
+
+                    <h2>🔍 Search Student</h2>
+
+                    <div class="search-box">
+
+                        <div>
+                            <input type="text" id="searchcontent" placeholder="Search by Name or Roll Number">
+                            <br>
+                            <br>
+                            <button id="search">Search</button>
+                        </div>
+
+                    </div>
+
+                    <p id="searchResult"></p>
+
+                    <table id="searchTable" border="1">
+
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Roll</th>
+                                <th>Branch</th>
+                                <th>CGPA</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="searchTableBody"></tbody>
+
+                    </table>
+
+                    <p id="searchMessage"></p>
+
                 </div>
 
-                <!-- Input Group: Branch Dropdown -->
-                <div>
-                    <label for="studentBranch">Select your Branch:</label>
-                    <select id="studentBranch" required>
-                        <option value="" disabled selected hidden>Choose your branch...</option>
-                        <option value="CSE">CSE (Computer Science)</option>
-                        <option value="MECH">MECH (Mechanical)</option>
-                        <option value="ECE">ECE (Electronics & Communication)</option>
-                        <option value="IT">IT (Information Technology)</option>
-                        <option value="CIVIL">CIVIL (Civil Engineering)</option>
-                        <option value="EEE">EEE (Electrical & Electronics)</option>
-                        <option value="AI-ML">AI & ML (Artificial Intelligence)</option>
-                        <option value="DS">DS (Data Science)</option>
-                    </select>
+            </div>
+
+            <div class="right">
+
+                <div id="x" class="dashboard-card">
+
+                    <h5 id="studentdashboard">STUDENT DASHBOARD</h5>
+
+                    <hr>
+
+                    <p id="totalstudents"></p>
+                    <p id="averagecgpa"></p>
+                    <p id="highestcgpa"></p>
+
+                    <hr>
+
                 </div>
 
-                <!-- Input Group: Cgpa -->
-                <div>
-                    <label for="studentCgpa">Cgpa:</label>
-                    <input type="number" id="studentCgpa" min="0" max="10" placeholder="0-10" required>
+                <!-- Student Data Display Section -->
+                <div class="table-card" id="tablecardid">
+                    <table border="1" id="studentTable">
+
+                        <thead>
+
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Roll Number</th>
+                                <th>Branch</th>
+                                <th>Cgpa</th>
+                                <th>Actions</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="tableBody">
+
+                        </tbody>
+
+                    </table>
+
+                    <div id="emptyMessage"></div>
+
                 </div>
+            </div>
 
-                <!-- Form Action -->
-                <div>
-                    <button type="submit" id="addBtn">Add Student</button>
-                    <button id="updateBtn" hidden>Update Student</button>
-                </div>
-
-                <div>
-                    <ul id="list"></ul> 
-                </div>
-
-                <div>
-                    <button id="reset">Reset</button>
-                </div>
-            </fieldset>
-        </form>
-
-        <hr>
-        <br>
-            <h5 id="studentdashboard">STUDENT DASHBOARD</h5><hr>
-            <p id="totalstudents"></p>
-            <p id="highestcgpa"></p><hr>
-        <br>
-
-        <!-- Student Data Display Section -->
-        <table border="1" id="studentTable">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Roll Number</th>
-                    <th>Branch</th>
-                    <th>Cgpa</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-             <tbody id="tableBody">
-
-            </tbody>
-        </table>
-        <div id="emptyMessage"></div>
-        <br>
-        <div>
-            <input type="text" id="searchcontent" placeholder="Search by Name or Roll Number">
-            <button id="search">Search</button>
         </div>
-        <p id="searchResult"></p>
 
     </main>
-        <script src ="js\app.js"></script>
+
+    <script src="js/app.js"></script>
 
 </body>
+
 </html>
