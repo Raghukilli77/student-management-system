@@ -21,6 +21,10 @@ A simple and responsive Student Management System built using **HTML, CSS, and J
 - JavaScript
 - Local Storage
 
+## Live Demo
+
+🔗 https://raghukilli77.github.io/student-management-system/
+
 ## 📸 Screenshots
 
 ### 🏠 Home
