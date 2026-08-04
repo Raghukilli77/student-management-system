@@ -21,6 +21,32 @@ const tableBody = document.getElementById("tableBody");
 const searchTable = document.getElementById("searchTable");
 searchTable.hidden=true;
 
+const toggle = document.getElementById("themeToggle");
+const icon = document.getElementById("themeIcon");
+
+window.addEventListener("DOMContentLoaded", () => {
+    if(localStorage.getItem("theme") === "light"){
+        document.body.classList.add("light-theme");
+        toggle.classList.add("active");
+        icon.src = "assets/sun.png";
+    }
+});
+
+toggle.addEventListener("click", () => {
+
+    toggle.classList.toggle("active");
+    document.body.classList.toggle("light-theme");
+
+    if(document.body.classList.contains("light-theme")){
+        icon.src = "assets/sun.png";
+        localStorage.setItem("theme","light");
+    }else{
+        icon.src = "assets/moon.png";
+        localStorage.setItem("theme","dark");
+    }
+
+});
+
 
 function clearForm(){
    studentName.value = "";
