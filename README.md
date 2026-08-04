@@ -45,7 +45,7 @@ A simple and responsive Student Management System built using **HTML, CSS, and J
 
 ### ☀️ Light Theme
 
-![Light Theme](screenshots/daytheme.png)
+![Light Theme](screenshots/light-theme.png)
 
 ## 🚀 Future Improvements
 
