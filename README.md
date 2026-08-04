@@ -1,44 +1,60 @@
 # 🎓 Student Management System
 
-A simple Student Management System built using HTML, CSS and JavaScript.
+A simple and responsive Student Management System built using **HTML, CSS, and JavaScript**.
 
-## Features
+## ✨ Features
 
-- Add Student
-- Update Student
-- Delete Student
-- Search Student
-- Dashboard Statistics
-- Local Storage Support
-- Responsive Monochrome UI
+- ➕ Add Student
+- ✏️ Edit Student
+- 🗑️ Delete Student
+- 🔍 Search Student
+- 📊 Dashboard Statistics
+- 💾 Local Storage Support
+- 🌙 Dark / ☀️ Light Theme
+- 📌 Sticky Header
+- 📱 Responsive UI
 
-## Technologies Used
+## 🛠️ Technologies Used
 
 - HTML5
 - CSS3
 - JavaScript
 - Local Storage
 
-## Folder Structure
+## 📸 Screenshots
 
-```
-student-management-system/
-│
-├── index.html
-├── css/
-│   └── style.css
-├── js/
-│   └── app.js
-├── assets/
-└── README.md
-```
+### 🏠 Home
 
-## How to Run
+![Home](screenshots/home.png)
 
-1. Download the project.
-2. Open with VS Code.
-3. Run using Live Server.
+### ➕ Add Student
 
-## Author
+![Add Student](screenshots/addform.png)
 
-Roy
+### 🔍 Search Student
+
+![Search](screenshots/search.png)
+
+### 📊 Dashboard
+
+![Dashboard](screenshots/dashboard.png)
+
+### 📋 Student Table
+
+![Student Table](screenshots/maintable.png)
+
+### ☀️ Light Theme
+
+![Light Theme](screenshots/daytheme.png)
+
+## 🚀 Future Improvements
+
+- Backend Integration
+- User Authentication
+- Database Support
+- Export Student Data
+- Attendance Management
+
+## 👨‍💻 Author
+
+**Roy**
